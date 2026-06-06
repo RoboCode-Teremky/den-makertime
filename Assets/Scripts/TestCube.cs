@@ -1,14 +1,15 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TestCube : MonoBehaviour
 {
-
     MeshRenderer meshRenderer;
-    Rigidbody rigidBody;
+    private NavMeshAgent navMeshAgent;
+    [SerializeField] int hp = 3;
     void Start()
-    {
+    { 
+        navMeshAgent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
-        rigidBody = GetComponent<Rigidbody>();
     }
 
 
@@ -19,6 +20,12 @@ public class TestCube : MonoBehaviour
 
     public void Action()
     {
-        meshRenderer.material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+        meshRenderer.material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 0.0f), Random.Range(0.0f, 0.0f));
+        hp--;
+        if (hp <= 0)
+        {
+            navMeshAgent.enabled = false;
+            Destroy(gameObject, 2.5f);
+        }
     }
 }
