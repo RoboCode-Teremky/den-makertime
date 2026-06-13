@@ -3,11 +3,14 @@ using UnityEngine.AI;
 
 public class TestCube : MonoBehaviour
 {
+
+    BoxCollider boxCollider;
     MeshRenderer meshRenderer;
     private NavMeshAgent navMeshAgent;
     [SerializeField] int hp = 3;
     void Start()
     { 
+        boxCollider = GetComponent<BoxCollider>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
@@ -24,6 +27,7 @@ public class TestCube : MonoBehaviour
         hp--;
         if (hp <= 0)
         {
+            boxCollider.enabled = false;
             navMeshAgent.enabled = false;
             Destroy(gameObject, 2.5f);
         }
