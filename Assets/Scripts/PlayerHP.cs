@@ -1,29 +1,37 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHP : MonoBehaviour
 {
 
-    [SerializeField] float playerHP = 100.0f;
+
+    [SerializeField] GameObject Menu;
+    [SerializeField] GameObject HPbar;
+    [SerializeField] float playerHP = 200.0f;
 
     void Start()
     {
-        
+        Menu.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            playerHP -= 10.0f;
+            playerHP -= 20.0f;
+        }
+        if (other.gameObject.CompareTag("BigZomb"))
+        {
+            playerHP -= 40.0f;
         }
     }
 
     void Update()
     {
+        HPbar.transform.localScale = new Vector3(playerHP / 200.0f, HPbar.transform.localScale.y, HPbar.transform.localScale.z);
         if (playerHP <= 0.0f)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Menu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

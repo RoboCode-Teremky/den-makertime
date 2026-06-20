@@ -20,6 +20,7 @@ public class RaySourse : MonoBehaviour
         if (callbackContext.started)
         {
             Ray ray = new Ray(transform.position, transform.forward);
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 0.5f);
             if(Physics.Raycast(ray, out RaycastHit hitInfo))
             {
                 Debug.Log(hitInfo.collider.name);

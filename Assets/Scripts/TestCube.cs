@@ -23,7 +23,11 @@ public class TestCube : MonoBehaviour
 
     public void Action()
     {
-        meshRenderer.material.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 0.0f), Random.Range(0.0f, 0.0f));
+        Color currentColor = meshRenderer.material.color;
+        currentColor.r = Mathf.Clamp01(currentColor.r + 0.2f);
+        currentColor.g = Mathf.Clamp01(currentColor.g - 0.2f);
+        currentColor.b = Mathf.Clamp01(currentColor.b - 0.1f);
+        meshRenderer.material.color = currentColor;
         hp--;
         if (hp <= 0)
         {
