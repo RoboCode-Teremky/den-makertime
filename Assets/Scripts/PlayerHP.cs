@@ -1,9 +1,8 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerHP : MonoBehaviour
 {
-
-
     [SerializeField] GameObject Menu;
     [SerializeField] GameObject HPbar;
     [SerializeField] float playerHP = 200.0f;
